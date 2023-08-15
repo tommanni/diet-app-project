@@ -5,60 +5,70 @@
 
 namespace UserInterface
 {
-    void printLoginScreen()
-    {
-        std::cout << '\n';
-        std::cout << "===========================================\n";
-        std::cout << "              THE LOG IN SCREEN\n";
-        std::cout << "===========================================\n";
-    }
-    //TODO: implement exit
-    int getLoginCommand()
-    {
-        std::cout << '\n';
-        std::cout << "Register to:\n";
-        std::cout << "- Gain access to a calorie calculator\n";
-        std::cout << "- Gain ability to save your meal plans\n";
-        std::cout << '\n';
-        std::cout << "Enter 1 to log in\n";
-        std::cout << "Enter 2 to register\n";
-        std::cout << "Enter 3 to continue as a guest\n";
-        std::cout << '\n';
+	void printLoginScreen()
+	{
+		std::cout << '\n';
+		std::cout << "===========================================\n";
+		std::cout << "              THE LOG IN SCREEN\n";
+		std::cout << "===========================================\n";
+	}
+	//TODO: implement exit
+	int getLoginCommand()
+	{
+		std::cout << '\n';
+		std::cout << "Register to:\n";
+		std::cout << "- Gain access to a calorie calculator\n";
+		std::cout << "- Gain ability to save your meal plans\n";
+		std::cout << '\n';
+		std::cout << "Enter 1 to log in\n";
+		std::cout << "Enter 2 to register\n";
+		std::cout << "Enter 3 to continue as a guest\n";
+		std::cout << "Enter 4 to exit the program\n";
+		std::cout << '\n';
 
-        int command{ 0 };
+		int command{ 0 };
 
-        while (command > 3 || command < 1)
-        {
-            std::cout << "Enter your choice: ";
-            std::cin >> command;
+		while (command > 4 || command < 1)
+		{
+			std::cout << "Enter your choice: ";
+			std::cin >> command;
 
-            if (std::cin.fail())
-            {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            }
-        }
+			if (std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			}
+		}
 
-        std::cout << '\n';
-        return command;
-    }
-    //TODO: impelement exit
-    void loginScreenChoice()
-    {
-        UserInterface::printLoginScreen();
+		std::cout << '\n';
+		return command;
+	}
+	//TODO: impelement exit
+	void loginScreenChoice()
+	{
+		while (true)
+		{
+			UserInterface::printLoginScreen();
 
-        sqlite::database db{ initDatabase() };
+			sqlite::database db{ initDatabase() };
 
-        int loginCommand{ UserInterface::getLoginCommand() };
+			int loginCommand{ UserInterface::getLoginCommand() };
 
-        switch (loginCommand)
-        {
-        case 1:
-            Login::login(db);
-        case 2:
-            Register::registration(db);
-        default:
-            break;
-        }
-    }
+			switch (loginCommand)
+			{
+			case 1:
+				Login::login(db);
+				break;
+			case 2:
+				Register::registration(db);
+				break;
+			case 3:
+				//TODO: implement contienue as a guest
+			case 4:
+				return;
+			default:
+				break;
+			}
+		}
+	}
 }

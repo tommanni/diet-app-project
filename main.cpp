@@ -5,5 +5,7 @@
 int main()
 {
 	UserInterface::loginScreenChoice();
+
+	return 0;
 }
 

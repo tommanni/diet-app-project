@@ -32,7 +32,7 @@ namespace Login
 				char cmd{ getCommand() };
 
 				if (cmd == 'n')
-					UserInterface::loginScreenChoice();
+					return;
 			}
 			else
 				validatePassword(password, pass);	
