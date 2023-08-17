@@ -9,7 +9,9 @@
 
 namespace Login
 {
-	void validatePassword(std::string& password, std::string pass);
+	void printLoginScreen();
 
-	void login(database& db);
+	bool validatePassword(std::string& password, std::string pass);
+
+	bool login(database& db);
 }

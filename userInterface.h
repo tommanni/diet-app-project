@@ -7,7 +7,7 @@
 
 namespace UserInterface
 {
-	void printLoginScreen();
+	void printAuthScreen();
 
 	int getLoginCommand();
 

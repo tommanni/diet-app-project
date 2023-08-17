@@ -5,11 +5,11 @@
 
 namespace UserInterface
 {
-	void printLoginScreen()
+	void printAuthScreen()
 	{
 		std::cout << '\n';
 		std::cout << "===========================================\n";
-		std::cout << "              THE LOG IN SCREEN\n";
+		std::cout << "         THE AUTHENTICATION SCREEN\n";
 		std::cout << "===========================================\n";
 	}
 	//TODO: implement exit
@@ -48,19 +48,22 @@ namespace UserInterface
 	{
 		while (true)
 		{
-			UserInterface::printLoginScreen();
+			printAuthScreen();
 
 			sqlite::database db{ initDatabase() };
 
-			int loginCommand{ UserInterface::getLoginCommand() };
+			int loginCommand{ getLoginCommand() };
+
+			bool loggedIn{ false };
 
 			switch (loginCommand)
 			{
 			case 1:
-				Login::login(db);
+				loggedIn = Login::login(db);
 				break;
 			case 2:
 				Register::registration(db);
+				loggedIn = Login::login(db);
 				break;
 			case 3:
 				//TODO: implement contienue as a guest
@@ -69,6 +72,12 @@ namespace UserInterface
 			default:
 				break;
 			}
+
+			if (loggedIn)
+			{
+
+			}
 		}
+
 	}
 }

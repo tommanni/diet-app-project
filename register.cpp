@@ -2,6 +2,14 @@
 
 namespace Register
 {
+	void printRegistrationScreen()
+	{
+		std::cout << '\n';
+		std::cout << "===========================================\n";
+		std::cout << "          THE REGISTRATION SCREEN\n";
+		std::cout << "===========================================\n";
+	}
+
 	int getCarbPercentage()
 	{
 		int percentage{0};
@@ -233,6 +241,8 @@ namespace Register
 	{
 		while (true)
 		{
+			printRegistrationScreen();
+
 			std::string username{};
 			getUsername(username);
 			std::string password{};
@@ -244,6 +254,7 @@ namespace Register
 			{
 				User user{username, password};
 				getUserData(db, user);
+				return;
 			}
 		}
 	}

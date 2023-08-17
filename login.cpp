@@ -2,20 +2,31 @@
 
 namespace Login
 {
-	void validatePassword(std::string& password, std::string pass)
+	void printLoginScreen()
 	{
-		if (bcrypt::validatePassword(password, pass))
-		{
-
-		}
-		else
-			std::cout << "Wrong password, try again.\n";
+		std::cout << '\n';
+		std::cout << "===========================================\n";
+		std::cout << "              THE LOG IN SCREEN\n";
+		std::cout << "===========================================\n";
 	}
 
-	void login(database& db)
+	bool validatePassword(std::string& password, std::string pass)
+	{
+		if (bcrypt::validatePassword(password, pass))
+			return true;
+		else
+		{
+			std::cout << "Wrong password, try again.\n";
+			return false;
+		}
+	}
+
+	bool login(database& db)
 	{
 		while (true)
 		{
+			printLoginScreen();
+
 			std::string pass{""};
 
 			std::string username{};
@@ -32,10 +43,11 @@ namespace Login
 				char cmd{ getCommand() };
 
 				if (cmd == 'n')
-					return;
+					return false;
 			}
 			else
-				validatePassword(password, pass);	
+				if (validatePassword(password, pass))
+					return true;
 		}
 	}
 }
