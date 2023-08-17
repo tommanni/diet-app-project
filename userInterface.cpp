@@ -11,7 +11,18 @@ namespace UserInterface
 		std::cout << "===========================================\n";
 		std::cout << "         THE AUTHENTICATION SCREEN\n";
 		std::cout << "===========================================\n";
+		std::cout << '\n';
 	}
+
+	void printMainMenuScreen()
+	{
+		std::cout << '\n';
+		std::cout << "===========================================\n";
+		std::cout << "           THE MAIN MENU SCREEN\n";
+		std::cout << "===========================================\n";
+		std::cout << '\n';
+	}
+
 	//TODO: implement exit
 	int getLoginCommand()
 	{
@@ -43,7 +54,16 @@ namespace UserInterface
 		std::cout << '\n';
 		return command;
 	}
-	//TODO: impelement exit
+
+	void mainMenu(database& db, bool loggedIn)
+	{
+		//TODO: implement main menu features
+		while (true)
+		{
+
+		}
+	}
+
 	void loginScreenChoice()
 	{
 		while (true)
@@ -63,10 +83,10 @@ namespace UserInterface
 				break;
 			case 2:
 				Register::registration(db);
-				loggedIn = Login::login(db);
 				break;
 			case 3:
-				//TODO: implement contienue as a guest
+				mainMenu(db, loggedIn);
+				break;
 			case 4:
 				return;
 			default:
@@ -75,7 +95,7 @@ namespace UserInterface
 
 			if (loggedIn)
 			{
-
+				mainMenu(db, loggedIn);
 			}
 		}
 

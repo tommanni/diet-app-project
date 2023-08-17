@@ -7,7 +7,7 @@ database initDatabase()
 {
 	try
 	{
-		database db("dietApp.db");
+		database db("dietDB.db");
 
 		db <<
 			"CREATE TABLE IF NOT EXISTS user ("
@@ -21,8 +21,9 @@ database initDatabase()
 			"   id INTEGER PRIMARY KEY,"
 			"   userId INTEGER,"
 			"   age INTEGER,"
+			"   height INTEGER,"
 			"   weight INTEGER,"
-			"   activityLevel INTEGER"
+			"   activityLevel INTEGER,"
 			"   gender TEXT,"
 			"   FOREIGN KEY(userId) REFERENCES user(id)"
 			");";
@@ -35,6 +36,7 @@ database initDatabase()
 			"	fatPercentage INTEGER,"
 			"	carbPercentage INTEGER,"
 			"	proteinPercentage INTEGER,"
+			"   mealsPerDay INTERGER,"
 			"   FOREIGN KEY(userId) REFERENCES user(id)"
 			");";
 

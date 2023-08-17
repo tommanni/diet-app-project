@@ -8,6 +8,7 @@ namespace Register
 		std::cout << "===========================================\n";
 		std::cout << "          THE REGISTRATION SCREEN\n";
 		std::cout << "===========================================\n";
+		std::cout << '\n';
 	}
 
 	int getCarbPercentage()
@@ -96,11 +97,29 @@ namespace Register
 		return cmd;
 	}
 
+	int getMealsPerDay()
+	{
+		int meals{ 0 };
+
+		while (meals < 1 || meals > 10)
+		{
+			std::cout << "Enter the amount of meals you eat per day: ";
+			std::cin >> meals;
+
+			if (std::cin.fail())
+				ignoreInput();
+		}
+
+		std::cout << '\n';
+		return meals;
+	}
+
 	void getUserGoals(User& user)
 	{
 		UserGoals& goals{ user.getUserGoals() };
 		
 		goals.setCalorieGoal(getCalorieGoal());
+		goals.setMealsPerDay(getMealsPerDay());
 
 		std::cout << "Enter 1 to set custom carbohydrate/protein/fat goal percentages.\n";
 		std::cout << "Enter 2 to use default values 40/30/30.\n";
@@ -237,16 +256,24 @@ namespace Register
 		getUserGoals(user);
 	}
 
+	void saveUserData(database& db, User& user)
+	{
+		addUser(db, user);
+		addUserInfo(db, user);
+		addUserGoals(db, user);
+	}
+
 	void registration(database& db)
 	{
+		printRegistrationScreen();
 		while (true)
 		{
-			printRegistrationScreen();
-
 			std::string username{};
 			getUsername(username);
 			std::string password{};
 			getPassword(password);
+
+			password = bcrypt::generateHash(password);
 
 			if (findUsername(db, username))
 				std::cout << "Username taken. Try again.\n";
@@ -254,6 +281,7 @@ namespace Register
 			{
 				User user{username, password};
 				getUserData(db, user);
+				saveUserData(db, user);
 				return;
 			}
 		}

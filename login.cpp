@@ -8,6 +8,7 @@ namespace Login
 		std::cout << "===========================================\n";
 		std::cout << "              THE LOG IN SCREEN\n";
 		std::cout << "===========================================\n";
+		std::cout << '\n';
 	}
 
 	bool validatePassword(std::string& password, std::string pass)
@@ -23,10 +24,9 @@ namespace Login
 
 	bool login(database& db)
 	{
+		printLoginScreen();
 		while (true)
 		{
-			printLoginScreen();
-
 			std::string pass{""};
 
 			std::string username{};
