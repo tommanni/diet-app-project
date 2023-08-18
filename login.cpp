@@ -47,7 +47,10 @@ namespace Login
 			}
 			else
 				if (validatePassword(password, pass))
+				{
+					std::cout << "Log in succesfull!\n";
 					return true;
+				}
 		}
 	}
 }

@@ -67,7 +67,7 @@ namespace UserInterface
 		std::cout << "Enter 2 to edit user info\n";
 		std::cout << "Enter 3 to edit user goals\n";
 		std::cout << "Enter 4 to use calorie calculator\n";
-		std::cout << "Enter 4 to log out\n";
+		std::cout << "Enter 5 to log out\n";
 		std::cout << '\n';
 	}
 
@@ -108,7 +108,7 @@ namespace UserInterface
 			case 4:
 				break;
 			case 5:
-				break;
+				return;
 			default:
 				break;
 			}

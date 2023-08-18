@@ -282,6 +282,7 @@ namespace Register
 				User user{username, password};
 				getUserData(db, user);
 				saveUserData(db, user);
+				std::cout << "Registration succesfull!\n";
 				return;
 			}
 		}
