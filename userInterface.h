@@ -9,7 +9,11 @@ namespace UserInterface
 {
 	void printAuthScreen();
 
-	int getLoginCommand();
+	void printAuthOptions();
+
+	void printMenuOptions();
+
+	int getAuthCommand();
 
 	void loginScreenChoice();
 }

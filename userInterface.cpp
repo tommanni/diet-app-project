@@ -23,8 +23,7 @@ namespace UserInterface
 		std::cout << '\n';
 	}
 
-	//TODO: implement exit
-	int getLoginCommand()
+	void printAuthOptions()
 	{
 		std::cout << '\n';
 		std::cout << "Register to:\n";
@@ -36,6 +35,12 @@ namespace UserInterface
 		std::cout << "Enter 3 to continue as a guest\n";
 		std::cout << "Enter 4 to exit the program\n";
 		std::cout << '\n';
+	}
+
+	//TODO: implement exit
+	int getAuthCommand()
+	{
+		printAuthOptions();
 
 		int command{ 0 };
 
@@ -55,12 +60,58 @@ namespace UserInterface
 		return command;
 	}
 
+	void printMenuOptions()
+	{
+		std::cout << '\n';
+		std::cout << "Enter 1 to edit meals\n";
+		std::cout << "Enter 2 to edit user info\n";
+		std::cout << "Enter 3 to edit user goals\n";
+		std::cout << "Enter 4 to use calorie calculator\n";
+		std::cout << "Enter 4 to log out\n";
+		std::cout << '\n';
+	}
+
+	int getMenuOption()
+	{
+		int option{};
+
+		while (option < 1 || option > 5)
+		{
+			std::cout << "Enter your choice: ";
+			std::cin >> option;
+
+			if (std::cin.fail())
+				ignoreInput();
+		}
+
+		std::cout << '\n';
+		return option;
+	}
+
 	void mainMenu(database& db, bool loggedIn)
 	{
 		//TODO: implement main menu features
 		while (true)
 		{
+			printMainMenuScreen();
+			printMenuOptions();
+			int option{ getMenuOption() };
 
+			switch (option)
+			{
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+			case 5:
+				break;
+			default:
+				break;
+			}
 		}
 	}
 
@@ -72,7 +123,7 @@ namespace UserInterface
 
 			sqlite::database db{ initDatabase() };
 
-			int loginCommand{ getLoginCommand() };
+			int loginCommand{ getAuthCommand() };
 
 			bool loggedIn{ false };
 
