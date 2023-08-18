@@ -1,5 +1,8 @@
 #include <iostream>
 #include "userInterface.h"
+#include "userProfile.h"
+#include "calorieCalculator.h"
+#include "userInput.h"
 
 //TODO: implement user inteface functionality
 
@@ -70,12 +73,39 @@ namespace UserInterface
 		std::cout << "Enter 5 to log out\n";
 		std::cout << '\n';
 	}
+	
+	void printGuestMenuOptions()
+	{
+		std::cout << '\n';
+		std::cout << "Enter 1 to edit meals\n";
+		std::cout << "Enter 2 to edit user goals\n";
+		std::cout << "Enter 3 to return to authentication screen\n";
+		std::cout << "Enter 4 to exit\n";
+		std::cout << '\n';
+	}
 
 	int getMenuOption()
 	{
 		int option{};
 
 		while (option < 1 || option > 5)
+		{
+			std::cout << "Enter your choice: ";
+			std::cin >> option;
+
+			if (std::cin.fail())
+				ignoreInput();
+		}
+
+		std::cout << '\n';
+		return option;
+	}
+	
+	int getGuestMenuOption()
+	{
+		int option{};
+
+		while (option < 1 || option > 4)
 		{
 			std::cout << "Enter your choice: ";
 			std::cin >> option;
@@ -100,15 +130,50 @@ namespace UserInterface
 			switch (option)
 			{
 			case 1:
+				//editMeals(db, loggedIn);
 				break;
 			case 2:
+				//editUserInfo(db, loggedIn)
 				break;
 			case 3:
+				//editUserGoals(db, loggedIn)
 				break;
 			case 4:
+				//calorieCalculator()
 				break;
 			case 5:
+				//logout
 				return;
+			default:
+				break;
+			}
+		}
+	}
+
+	bool guestMainMenu()
+	{
+		//TODO: implement main menu for guest users
+		while (true)
+		{
+			printMainMenuScreen();
+			printGuestMenuOptions();
+			int option{ getGuestMenuOption() };
+
+			User guest{};
+
+			switch (option)
+			{
+			case 1:
+				//editMeals(db, loggedIn);
+			case 2:
+				//editUserGoals(db, loggedIn)
+				break;
+			case 3:
+				//Return to authentication screen
+				return false;
+			case 4:
+				//exit
+				return true;
 			default:
 				break;
 			}
@@ -136,7 +201,8 @@ namespace UserInterface
 				Register::registration(db);
 				break;
 			case 3:
-				mainMenu(db, loggedIn);
+				if (guestMainMenu())
+					return;
 				break;
 			case 4:
 				return;

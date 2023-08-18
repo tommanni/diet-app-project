@@ -90,7 +90,7 @@ class User
 {
 public:
 	User(
-		const std::string& username, const std::string& password,
+		const std::string& username="", const std::string& password="",
 		const std::string& gender = "", int age = 0, int height = 0, int weight = 0, int activityLevel = 0,
 		int calorieGoal = 0, int fatPercentage = 0, int carbPercentage = 0, int proteinPercentage = 0,
 		int mealsPerDay = 0
