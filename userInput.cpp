@@ -156,6 +156,8 @@ void getUserGoals(User& user)
 {
 	UserGoals& goals{ user.getUserGoals() };
 
+	std::cout << "Lets set up your goals!\n\n";
+
 	goals.setCalorieGoal(getCalorieGoal());
 	goals.setMealsPerDay(getMealsPerDay());
 

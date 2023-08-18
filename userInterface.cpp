@@ -152,6 +152,9 @@ namespace UserInterface
 
 	bool guestMainMenu()
 	{
+		User guest{};
+		getUserGoals(guest);
+
 		//TODO: implement main menu for guest users
 		while (true)
 		{
@@ -159,14 +162,13 @@ namespace UserInterface
 			printGuestMenuOptions();
 			int option{ getGuestMenuOption() };
 
-			User guest{};
-
 			switch (option)
 			{
 			case 1:
-				//editMeals(db, loggedIn);
+				//editMeals(db, guest, loggedIn);
+				break;
 			case 2:
-				//editUserGoals(db, loggedIn)
+				//editUserGoals(db, guest, loggedIn)
 				break;
 			case 3:
 				//Return to authentication screen
