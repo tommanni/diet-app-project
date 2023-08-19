@@ -52,7 +52,6 @@ char getCommand()
 
 	while (c != 'y' && c != 'n')
 	{
-		std::cout << "Command: ";
 		std::cin >> c;
 
 		if (std::cin.fail())

@@ -112,7 +112,7 @@ namespace Register
 
 	void getUserData(database& db, User& user)
 	{
-		std::cout << "\nLets set up your profile!\n";
+		std::cout << "Lets set up your profile!\n";
 
 		std::cout << "\nWould you like to use a calorie calculator to find out your caloric needs? (y/n): ";
 		char cmd{ getCommand() };
