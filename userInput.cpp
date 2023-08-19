@@ -23,8 +23,15 @@ void getPassword(std::string& password)
 {
 	while (password.length() < 1)
 	{
+		//HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
+		//DWORD mode;
+		//GetConsoleMode(hStdin, &mode);
+		//SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
+
 		std::cout << "Password: ";
 		std::cin >> password;
+
+		//SetConsoleMode(hStdin, mode); // Restore original console mode
 
 		if (std::cin.fail())
 			ignoreInput();
