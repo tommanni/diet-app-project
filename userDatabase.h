@@ -12,6 +12,6 @@ void addUserInfo(database& db, User& user);
 
 void addUserGoals(database& db, User& user);
 
-void findUser(database& db, const std::string& username, std::string& pass);
+void findUser(database& db, const std::string& username, std::string& pass, int& id);
 
 bool findUsername(database& db, const std::string& username);

@@ -13,5 +13,5 @@ namespace Login
 
 	bool validatePassword(std::string& password, std::string pass);
 
-	bool login(database& db);
+	bool login(database& db, int& userId);
 }

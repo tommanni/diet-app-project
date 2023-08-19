@@ -54,7 +54,7 @@ void addUserGoals(database& db, User& user)
 	{
 		int id{};
 		
-		UserGoals userGoals{ user.getUserGoals() };
+		UserGoals& userGoals{ user.getUserGoals() };
 
 		db << "SELECT id FROM user WHERE username = ?;" << user.getUsername() >> id;
 
@@ -78,11 +78,11 @@ void addUserGoals(database& db, User& user)
 	}
 }
 
-void findUser(database& db, const std::string& username, std::string& pass)
+void findUser(database& db, const std::string& username, std::string& pass, int& id)
 {
 	try
 	{
-		db << "SELECT password FROM user WHERE username = ?" << username >> pass;
+		db << "SELECT id, password FROM user WHERE username = ?" << username >> tie(id, pass);
 	}
 	catch (const std::exception& ex)
 	{

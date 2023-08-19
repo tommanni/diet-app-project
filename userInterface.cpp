@@ -118,7 +118,7 @@ namespace UserInterface
 		return option;
 	}
 
-	void mainMenu(database& db, bool loggedIn)
+	void mainMenu(database& db, bool loggedIn, int userId)
 	{
 		//TODO: implement main menu features
 		while (true)
@@ -194,10 +194,12 @@ namespace UserInterface
 
 			bool loggedIn{ false };
 
+			int userId{};
+
 			switch (loginCommand)
 			{
 			case 1:
-				loggedIn = Login::login(db);
+				loggedIn = Login::login(db, userId);
 				break;
 			case 2:
 				Register::registration(db);
@@ -214,7 +216,7 @@ namespace UserInterface
 
 			if (loggedIn)
 			{
-				mainMenu(db, loggedIn);
+				mainMenu(db, loggedIn, userId);
 			}
 		}
 

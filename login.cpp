@@ -22,7 +22,7 @@ namespace Login
 		}
 	}
 
-	bool login(database& db)
+	bool login(database& db, int& userId)
 	{
 		printLoginScreen();
 		while (true)
@@ -35,7 +35,7 @@ namespace Login
 			std::string password{};
 			getPassword(password);
 
-			findUser(db, username, pass);
+			findUser(db, username, pass, userId);
 
 			if (pass.length() < 1)
 			{

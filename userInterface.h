@@ -15,5 +15,9 @@ namespace UserInterface
 
 	int getAuthCommand();
 
+	void mainMenu(database& db, bool loggedIn, int userId);
+
+	bool guestMainMenu();
+
 	void loginScreenChoice();
 }
