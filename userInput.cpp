@@ -23,19 +23,27 @@ void getPassword(std::string& password)
 {
 	while (password.length() < 1)
 	{
-		//HANDLE hStdin = GetStdHandle(STD_INPUT_HANDLE);
-		//DWORD mode;
-		//GetConsoleMode(hStdin, &mode);
-		//SetConsoleMode(hStdin, mode & (~ENABLE_ECHO_INPUT));
-
 		std::cout << "Password: ";
-		std::cin >> password;
 
-		//SetConsoleMode(hStdin, mode); // Restore original console mode
+		char ch;
+		while ((ch = _getch()) != 13) { // Enter key
+			if (ch == 8) { // Backspace
+				if (!password.empty()) {
+					password.pop_back();
+					std::cout << "\b \b"; // Erase the last character
+				}
+			}
+			else if (ch >= 32 && ch <= 126) {
+				password += ch;
+				std::cout << '*';
+			}
+		}
 
 		if (std::cin.fail())
 			ignoreInput();
 	}
+
+	std::cout << "\n\n";
 }
 
 char getCommand()
@@ -51,6 +59,7 @@ char getCommand()
 			ignoreInput();
 	}
 
+	std::cout << '\n';
 	return c;
 }
 

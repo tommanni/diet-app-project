@@ -127,6 +127,8 @@ namespace UserInterface
 			printMenuOptions();
 			int option{ getMenuOption() };
 
+			User member{};
+
 			switch (option)
 			{
 			case 1:

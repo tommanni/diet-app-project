@@ -11,17 +11,6 @@ namespace Login
 		std::cout << '\n';
 	}
 
-	bool validatePassword(std::string& password, std::string pass)
-	{
-		if (bcrypt::validatePassword(password, pass))
-			return true;
-		else
-		{
-			std::cout << "Wrong password, try again.\n";
-			return false;
-		}
-	}
-
 	bool login(database& db, int& userId)
 	{
 		printLoginScreen();
@@ -39,18 +28,29 @@ namespace Login
 
 			if (pass.length() < 1)
 			{
-				std::cout << "Try again? (y/n)\n";
+				std::cout << "Try again? (y/n)\n\n";
 				char cmd{ getCommand() };
 
 				if (cmd == 'n')
 					return false;
 			}
 			else
-				if (validatePassword(password, pass))
+			{
+				if (bcrypt::validatePassword(password, pass))
 				{
 					std::cout << "Log in succesfull!\n";
 					return true;
 				}
+				else
+				{
+					std::cout << "Incorrect username or password\n";
+					std::cout << "Try again? (y/n)\n\n";
+					char cmd{ getCommand() };
+
+					if (cmd == 'n')
+						return false;
+				}
+			}
 		}
 	}
 }

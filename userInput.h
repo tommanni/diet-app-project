@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <string>
-//#include <windows.h>
+#include <conio.h>
 #include "userProfile.h"
 
 void ignoreInput();
